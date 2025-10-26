@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { EvaluationResult } from "./components/EvaluationResult";
+import { ImprovedPrompts } from "./components/ImprovedPrompts";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
@@ -87,7 +88,14 @@ export default function Home() {
           </button>
         </div>
 
-        {evaluation && <EvaluationResult evaluation={evaluation} />}
+        {evaluation && (
+          <div className="space-y-8">
+            <EvaluationResult evaluation={evaluation} />
+            {evaluation.improvedPrompts && (
+              <ImprovedPrompts improvedPrompts={evaluation.improvedPrompts} />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
