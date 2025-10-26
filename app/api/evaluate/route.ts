@@ -130,6 +130,26 @@ You must respond with a valid JSON object following this exact structure:
       "feedback": "<1-2 sentence assessment>",
       "improvements": ["<specific improvement 1>", ...]
     }
+  ],
+  "improvedPrompts": [
+    {
+      "version": "Version 1: <brief title>",
+      "prompt": "<the complete improved prompt text>",
+      "improvements": ["<specific improvement applied>", "<another improvement applied>", ...],
+      "explanation": "<2-3 sentences explaining why this version is better, referencing specific rubric dimensions and scores it would improve>"
+    },
+    {
+      "version": "Version 2: <brief title>",
+      "prompt": "<the complete improved prompt text>",
+      "improvements": ["<specific improvement applied>", "<another improvement applied>", ...],
+      "explanation": "<2-3 sentences explaining why this version is better, referencing specific rubric dimensions and scores it would improve>"
+    },
+    {
+      "version": "Version 3: <brief title>",
+      "prompt": "<the complete improved prompt text>",
+      "improvements": ["<specific improvement applied>", "<another improvement applied>", ...],
+      "explanation": "<2-3 sentences explaining why this version is better, referencing specific rubric dimensions and scores it would improve>"
+    }
   ]
 }
 
@@ -140,12 +160,27 @@ Rating ranges:
 - 45-59: "Weak - Needs significant restructuring"
 - Below 45: "Poor - Requires complete redesign"
 
+## Improved Prompt Samples
+
+You must provide 3 improved versions of the original prompt. Each version should:
+1. Address different priority weaknesses identified in your evaluation
+2. Demonstrate specific improvements based on the rubric dimensions
+3. Show progressive enhancement (Version 1: basic fixes, Version 2: intermediate, Version 3: advanced)
+4. Be complete, working prompts that could be used immediately
+5. Include clear explanations referencing specific rubric criteria
+
+Guidelines for each version:
+- Version 1: Focus on the 2-3 most critical issues (usually Clarity, Structure, or Output Format)
+- Version 2: Build on Version 1 by adding Context, Examples, or Task Decomposition improvements
+- Version 3: Advanced version incorporating Instruction Effectiveness, Safety, and all best practices
+
 Important:
 1. Be specific and actionable in your feedback
 2. Provide concrete improvement suggestions, not vague advice
 3. Consider the task type when evaluating
 4. Ensure scores align with the criteria
-5. Return ONLY the JSON object, no additional text`;
+5. Make improved prompts substantially better, not just slightly tweaked
+6. Return ONLY the JSON object, no additional text`;
 
 export async function POST(request: NextRequest) {
   try {
@@ -172,7 +207,7 @@ export async function POST(request: NextRequest) {
 
     const message = await anthropic.messages.create({
       model: "claude-3-5-sonnet-20241022",
-      max_tokens: 4000,
+      max_tokens: 8000,
       messages: [
         {
           role: "user",

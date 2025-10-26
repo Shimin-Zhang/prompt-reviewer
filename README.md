@@ -7,6 +7,8 @@ An AI-powered tool for evaluating and improving your prompts using a comprehensi
 - **Comprehensive Evaluation**: 8-dimension scoring rubric covering all aspects of prompt quality
 - **Detailed Feedback**: Get specific scores and feedback for each dimension
 - **Actionable Suggestions**: Receive concrete improvement recommendations
+- **3 Improved Prompt Samples**: Get progressively enhanced versions of your prompt with explanations
+- **Copy-to-Clipboard**: Easily copy improved prompts to use in your AI applications
 - **Beautiful UI**: Clean, modern interface with dark mode support
 - **Real-time Analysis**: Powered by Claude 3.5 Sonnet for accurate evaluations
 
@@ -73,7 +75,9 @@ npm start
 3. Review your scores across all 8 dimensions
 4. Read the detailed feedback for each dimension
 5. Follow the specific improvement suggestions
-6. Iterate and re-evaluate to improve your prompt
+6. **Review 3 improved prompt samples** with explanations of what makes them better
+7. Click "Copy" on any improved version to use it in your AI applications
+8. Iterate and re-evaluate to improve your prompt further
 
 ## Example Evaluations
 
